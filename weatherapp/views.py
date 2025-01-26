@@ -73,8 +73,8 @@ def request_token(request):
         user.reset_token = reset_tok
         user.save()
         # Create the reset link
-        reset_link = request.build_absolute_uri(f'/reset_token/{reset_tok}')
-        # reset_link = f'http://localhost:5173/reset_token/{reset_token}'
+        # reset_link = request.build_absolute_uri(f'/reset_token/{reset_tok}')
+        reset_link = f'http://localhost:5173/reset_token/{reset_tok}'
         # Send the reset link
         reset_auth.send_password_reset_email(user=user, link=reset_link)
         return Response({'message': f'Reset link sent to {user.email}'}, status=status.HTTP_201_CREATED)
