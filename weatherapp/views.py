@@ -44,7 +44,10 @@ class CustomTokenObtainPairView(TokenObtainPairView):
 
 
 class Register(APIView):
+    """This class is used to register a new user"""
+
     def post(self, request):
+        """This function is used to register a new user"""
         serializer = UserRegistrationSerializer(data=request.data)
         if serializer.is_valid():
             email = serializer.validated_data.get('email')
@@ -63,6 +66,7 @@ class Register(APIView):
 
 
 def request_token(request):
+    """This function is used to request a password reset token"""
     email = request.data.get('email')
     user = User.objects.filter(email=email).first()
     if user:
@@ -83,6 +87,7 @@ def request_token(request):
 
 @api_view(['GET', 'POST'])
 def reset_token(request, reset_token):
+    '''This function is used to reset the user's password'''
     if request.method == 'POST':
         print(f'Reset Token: {reset_token}')
         user = User.objects.filter(reset_token=reset_token).first()
@@ -105,6 +110,7 @@ def reset_token(request, reset_token):
 
 
 class LogoutView(APIView):
+    """This class is used to log out a user"""
     permission_classes = [IsAuthenticated]
     authentication_classes = [JWTAuthentication]
 
@@ -128,6 +134,7 @@ class LogoutView(APIView):
 @authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated])
 def get_current_location(request):
+    """This function is used to get the current location of the user and return the weather data for that location."""
     user = request.user
     # Get the current location using IP address
     g = geocoder.ip('me')
@@ -294,6 +301,7 @@ def get_location(request):
 @authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated])
 def update_location(request, query_id):
+    '''This function is used to update the location of the user and return the weather data for that location.'''
     user = request.user
     data = request.data
     print('API_KEY: ', API_KEY)
@@ -431,6 +439,7 @@ def update_location(request, query_id):
 @authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated])
 def delete_location(request, query_id):
+    """This function is used to delete a location from the user's query history"""
     try:
         user = request.user
         query = Query.objects.filter(
@@ -446,6 +455,7 @@ def delete_location(request, query_id):
 
 
 class QueryHistoryView(ListAPIView):
+    """This class is used to get the user's query history"""
     queryset = Query.objects.all()
     serializer_class = QuerySerializer
     permission_classes = [IsAuthenticated]
@@ -457,9 +467,11 @@ class QueryHistoryView(ListAPIView):
 
 
 class VerifyToken(APIView):
+    """This class is used to verify the access token"""
     permission_classes = [AllowAny]
 
     def post(self, request):
+        """This function is used to verify the access token"""
         token = request.data.get('access')
         # print(f"Raw Token: {token}")
         if token:

@@ -36,6 +36,8 @@ class QuerySerializer(serializers.ModelSerializer):
 
 
 class CustomAuthenticationBackend(BaseBackend):
+    """Custom authentication backend to authenticate users using email and password"""
+
     def authenticate(self, request, email=None, password=None, **kwargs):
         try:
             user = User.objects.get(email=email)
@@ -52,6 +54,8 @@ class CustomAuthenticationBackend(BaseBackend):
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    """Custom TokenObtainPairSerializer to include user details in the response"""
+
     def validate(self, attr):
         data = super().validate(attr)
         email = attr.get('email')
