@@ -74,8 +74,8 @@ const Home = () => {
     return (
     <main className="flex items-center justify-center h-screen">
         <div className="w-full max-w-md">
-    <h1>Cover your page.</h1>
-    <p className="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
+    <h1>Weather Web Application.</h1>
+    <p className="lead">Your go to application to check the weather condition in your location.</p>
     <p className="lead">
       <a href="#" className="btn btn-lg btn-light fw-bold border-white bg-white">Learn more</a>
     </p>

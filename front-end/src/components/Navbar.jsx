@@ -22,7 +22,7 @@ const Navbar = () => {
         setIsActiveeSignIn(true);
     };
   return (
-    <nav className="navbar navbar-main navbar-expand-lg px-0 mx-4 navbar-light bg-gray-300 shadow-none position-sticky top-0 z-index-sticky">
+    <nav className="navbar navbar-main navbar-expand-lg px-0 mx-4 navbar-light bg-gray-500 shadow-none position-sticky top-0 z-index-sticky">
       <div className="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
         <header className="mb-auto">
           <div>

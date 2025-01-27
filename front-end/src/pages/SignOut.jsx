@@ -34,8 +34,8 @@ async function Logout(navigate) {
         alert("Logout Successful");
         console.log("Logout Successful");
     } catch (error) {
-        alert("Logout Failed");
-        console.log("Logout Failed", error);
+        alert("Session Expired. Please login again.");
+        console.log("Session Expired. Please login again.", error);
         navigate('/');
     }
 }
